@@ -1,0 +1,213 @@
+<!--
+  ================================================================
+  _partials.html  —  LUXE Fashion  |  Shared HTML Snippets
+  ================================================================
+  Copy these sections into every page.
+  All pages must reference:
+    • dist/output.css   (Tailwind compiled)
+    • https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css
+    • src/js/main.js    (or dist/main.js after bundling)
+  ================================================================
+-->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR  (paste at top of <body>)
+══════════════════════════════════════════════════════════ -->
+<div class="bg-dark-900 dark:bg-dark-800 text-luxe-300 text-xs font-sans py-2 overflow-hidden">
+  <div class="marquee-track">
+    <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+    <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+    <span class="pr-16">✦ 30-Day Easy Returns</span>
+    <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+    <span class="pr-16">✦ Exclusive Members-Only Deals</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+    <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+    <span class="pr-16">✦ 30-Day Easy Returns</span>
+    <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+    <span class="pr-16">✦ Exclusive Members-Only Deals</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVBAR  (paste after announcement bar)
+══════════════════════════════════════════════════════════ -->
+<header id="navbar" class="sticky top-0 z-[100] bg-stone-50/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-stone-200 dark:border-dark-700 transition-colors duration-300">
+  <nav class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2 font-display text-2xl tracking-[0.15em] font-bold text-stone-900 dark:text-stone-100">
+      <span class="w-6 h-6 bg-luxe-500 flex items-center justify-center">
+        <i class="fa-solid fa-gem text-white text-xs"></i>
+      </span>
+      LUXE
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <ul class="hidden md:flex items-center gap-1">
+      <li><a href="index.html"       class="nav-link hover-underline">Home</a></li>
+      <li><a href="collection.html"  class="nav-link hover-underline">Collection</a></li>
+      <li><a href="blog.html"        class="nav-link hover-underline">Blog</a></li>
+      <li><a href="about.html"       class="nav-link hover-underline">About</a></li>
+      <li><a href="contact.html"     class="nav-link hover-underline">Contact</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Search toggle -->
+      <button onclick="toggleSearch()" title="Search"
+        class="w-9 h-9 flex items-center justify-center rounded-full text-stone-500 dark:text-stone-400 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <!-- Wishlist -->
+      <a href="wishlist.html" title="Wishlist"
+        class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 dark:text-stone-400 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+        <i class="fa-regular fa-heart"></i>
+        <span id="wish-badge"
+          class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">
+          0
+        </span>
+      </a>
+      <!-- Cart -->
+      <a href="cart.html" title="Cart"
+        class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 dark:text-stone-400 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="cart-badge"
+          class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">
+          0
+        </span>
+      </a>
+      <!-- Dark mode toggle -->
+      <button onclick="toggleTheme()" title="Toggle theme"
+        class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 dark:text-stone-400 hover:text-luxe-600 transition-all text-sm">
+        <i id="theme-icon" class="fa-solid fa-moon"></i>
+      </button>
+      <!-- Hamburger (mobile only) -->
+      <button onclick="toggleMobile()" id="hamburger"
+        class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+        <span class="w-5 h-px bg-stone-700 dark:bg-stone-300 transition-all"></span>
+        <span class="w-5 h-px bg-stone-700 dark:bg-stone-300 transition-all"></span>
+        <span class="w-3 h-px bg-stone-700 dark:bg-stone-300 transition-all self-end"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Search bar (toggled via JS) -->
+  <div id="search-bar" class="hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-4 py-3">
+    <div class="max-w-2xl mx-auto relative">
+      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+      <input type="search" placeholder="Search for products, brands, categories…"
+        class="w-full pl-11 pr-4 py-2.5 bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-600 rounded-full text-sm focus:outline-none focus:border-luxe-400 transition-colors font-body" />
+    </div>
+  </div>
+
+  <!-- Mobile menu (toggled via JS) -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-6 pb-5">
+    <ul class="flex flex-col gap-1 pt-3">
+      <li><a href="index.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm transition-colors">Home</a></li>
+      <li><a href="collection.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm transition-colors">Collection</a></li>
+      <li><a href="blog.html"       class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm transition-colors">Blog</a></li>
+      <li><a href="about.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm transition-colors">About</a></li>
+      <li><a href="contact.html"    class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm transition-colors">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER  (paste before </body>)
+══════════════════════════════════════════════════════════ -->
+<footer class="bg-dark-900 text-stone-500">
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-dark-700">
+
+      <!-- Brand col -->
+      <div>
+        <div class="font-display text-2xl text-white tracking-widest mb-4">LUXE</div>
+        <p class="text-sm font-body leading-relaxed mb-6">
+          Cambodia's premium online fashion destination. Curating the finest pieces, delivered to your door with love.
+        </p>
+        <div class="space-y-2 text-xs font-body">
+          <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-luxe-500 w-4"></i>Street 271, Phnom Penh, Cambodia</p>
+          <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-luxe-500 w-4"></i>+855 23 456 789</p>
+          <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-luxe-500 w-4"></i>hello@luxefashion.com</p>
+        </div>
+      </div>
+
+      <!-- Nav col -->
+      <div>
+        <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Navigation</h5>
+        <ul class="space-y-3">
+          <li><a href="index.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">Home</a></li>
+          <li><a href="collection.html" class="text-sm font-body hover:text-luxe-400 transition-colors">Collection</a></li>
+          <li><a href="blog.html"       class="text-sm font-body hover:text-luxe-400 transition-colors">Style Journal</a></li>
+          <li><a href="about.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">About Us</a></li>
+          <li><a href="contact.html"    class="text-sm font-body hover:text-luxe-400 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Support col -->
+      <div>
+        <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Support</h5>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">FAQs</a></li>
+          <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Shipping &amp; Delivery</a></li>
+          <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Returns &amp; Refunds</a></li>
+          <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Size Guide</a></li>
+          <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Social + Newsletter col -->
+      <div>
+        <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Follow LUXE</h5>
+        <div class="flex gap-2 mb-8">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Newsletter</h5>
+        <div class="flex">
+          <input type="email" placeholder="your@email.com"
+            class="flex-1 px-3 py-2.5 bg-dark-800 border border-dark-600 text-sm font-body text-stone-300 placeholder-stone-600 focus:outline-none focus:border-luxe-500 transition-colors" />
+          <button onclick="handleSubscribe()"
+            class="px-4 bg-luxe-500 hover:bg-luxe-600 text-white transition-colors">
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-xs font-body text-stone-600">
+        © 2026 LUXE Fashion. All rights reserved. Designed with
+        <span class="text-luxe-500">♥</span> in Cambodia.
+      </p>
+      <div class="flex items-center gap-3 text-xs text-stone-600">
+        <span>Visa</span>
+        <span>•</span>
+        <span>Mastercard</span>
+        <span>•</span>
+        <span>PayPal</span>
+        <span>•</span>
+        <span>ABA Pay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+  <i class="fa-solid fa-circle-check text-luxe-400 dark:text-luxe-600"></i>
+  <span id="toast-msg">Done!</span>
+</div>
+
+<!-- Back to Top -->
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  id="btt" class="back-to-top" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
