@@ -1,0 +1,368 @@
+/* ============================================================
+   TAILWIND DIRECTIVES
+   These three lines pull in Tailwind's entire system.
+   Run: npx tailwindcss -i ./src/input.css -o ./dist/output.css
+============================================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   GOOGLE FONTS IMPORT
+   (also add the <link> tags in your HTML <head> for best perf)
+============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+/* ============================================================
+   BASE LAYER — global resets & defaults
+============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-900 font-body antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-dark-900 text-stone-100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar        { width: 6px; }
+  ::-webkit-scrollbar-track  { @apply bg-stone-100; }
+  ::-webkit-scrollbar-thumb  { @apply bg-luxe-500 rounded-full; }
+
+  .dark ::-webkit-scrollbar-track { @apply bg-dark-800; }
+  .dark ::-webkit-scrollbar-thumb { @apply bg-luxe-600; }
+}
+
+/* ============================================================
+   COMPONENTS LAYER — reusable class groups
+============================================================ */
+@layer components {
+
+  /* ── Buttons ─────────────────────────────────────────── */
+  .btn-primary {
+    @apply px-7 py-3 bg-luxe-500 hover:bg-luxe-600 text-white text-xs
+           font-sans font-semibold tracking-widest uppercase
+           transition-all duration-200 hover:-translate-y-0.5
+           hover:shadow-luxe;
+  }
+
+  .btn-outline {
+    @apply px-7 py-3 border border-stone-300 dark:border-dark-600
+           text-stone-700 dark:text-stone-300 text-xs font-sans
+           tracking-widest uppercase hover:border-luxe-400
+           hover:text-luxe-600 transition-all duration-200;
+  }
+
+  .btn-dark {
+    @apply px-7 py-4 bg-dark-900 dark:bg-luxe-500 text-white text-xs
+           font-sans tracking-widest uppercase hover:bg-luxe-600
+           dark:hover:bg-luxe-600 transition-colors duration-200;
+  }
+
+  .btn-ghost-white {
+    @apply px-7 py-3 border border-white/40 text-white text-xs font-sans
+           tracking-widest uppercase hover:bg-white/10
+           hover:border-white/70 transition-all duration-200 backdrop-blur-sm;
+  }
+
+  /* ── Section Labels ───────────────────────────────────── */
+  .section-label {
+    @apply text-luxe-500 text-[10px] tracking-[0.4em] uppercase font-sans mb-2 block;
+  }
+
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-light
+           text-stone-900 dark:text-stone-100;
+  }
+
+  /* ── Nav Button ───────────────────────────────────────── */
+  .nav-link {
+    @apply text-sm font-sans text-stone-600 dark:text-stone-400
+           hover:text-luxe-600 dark:hover:text-luxe-400
+           px-3 py-2 transition-colors duration-200 relative;
+  }
+
+  /* ── Hover underline ──────────────────────────────────── */
+  .hover-underline {
+    @apply relative;
+  }
+  .hover-underline::after {
+    content: '';
+    @apply absolute bottom-[-2px] left-0 w-0 h-px bg-luxe-500 transition-all duration-300;
+  }
+  .hover-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* ── Gradient Text ────────────────────────────────────── */
+  .gradient-text {
+    background: linear-gradient(135deg, #c4861f 0%, #e5be6f 50%, #c4861f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Product Card ─────────────────────────────────────── */
+  .product-card {
+    @apply bg-white dark:bg-dark-800 border border-stone-100
+           dark:border-dark-700 cursor-pointer overflow-hidden
+           transition-all duration-300;
+  }
+  .product-card:hover {
+    @apply -translate-y-1.5 shadow-card;
+  }
+  .product-card:hover .product-img {
+    @apply scale-105;
+  }
+  .product-img {
+    @apply transition-transform duration-500;
+  }
+
+  /* ── Form Inputs ──────────────────────────────────────── */
+  .form-input {
+    @apply w-full px-4 py-3 bg-stone-50 dark:bg-dark-700
+           border border-stone-200 dark:border-dark-600
+           text-sm font-body text-stone-700 dark:text-stone-300
+           placeholder-stone-400 focus:outline-none
+           focus:border-luxe-400 transition-colors duration-200;
+  }
+
+  .form-label {
+    @apply block text-xs font-sans tracking-widest uppercase
+           text-stone-500 mb-2;
+  }
+
+  /* ── Blog Card ────────────────────────────────────────── */
+  .blog-card {
+    @apply cursor-pointer;
+  }
+  .blog-card:hover .blog-thumb {
+    @apply scale-105;
+  }
+  .blog-thumb {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  /* ── Size Pill ────────────────────────────────────────── */
+  .size-pill {
+    @apply w-10 h-10 border border-stone-300 dark:border-dark-600
+           text-xs font-sans font-semibold text-stone-600
+           dark:text-stone-400 transition-all duration-200
+           hover:border-luxe-500 hover:text-luxe-600;
+  }
+  .size-pill.selected {
+    @apply bg-luxe-500 text-white border-luxe-500;
+  }
+
+  /* ── Color Swatch ─────────────────────────────────────── */
+  .color-swatch {
+    @apply w-7 h-7 rounded-full cursor-pointer transition-all duration-200;
+  }
+  .color-swatch:hover,
+  .color-swatch.selected {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px white, 0 0 0 5px #c4861f;
+  }
+  .dark .color-swatch:hover,
+  .dark .color-swatch.selected {
+    box-shadow: 0 0 0 3px #1c1917, 0 0 0 5px #c4861f;
+  }
+
+  /* ── Accordion ────────────────────────────────────────── */
+  .accord-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .accord-body.open {
+    max-height: 500px;
+  }
+
+  /* ── Newsletter Gradient ──────────────────────────────── */
+  .newsletter-grad {
+    background: linear-gradient(135deg, #0c0a09 0%, #3c3735 50%, #1c1917 100%);
+  }
+
+  /* ── Social Button ────────────────────────────────────── */
+  .social-btn {
+    @apply w-9 h-9 border border-stone-200 dark:border-dark-600
+           flex items-center justify-center text-stone-500
+           hover:border-luxe-400 hover:text-luxe-600
+           transition-all duration-200 text-sm;
+  }
+
+  /* ── Page Header Banner ───────────────────────────────── */
+  .page-banner {
+    @apply relative h-48 bg-dark-900 flex items-center overflow-hidden;
+  }
+  .page-banner-bg {
+    @apply absolute inset-0 bg-cover bg-center opacity-25;
+  }
+  .page-banner-content {
+    @apply relative z-10 max-w-7xl mx-auto px-6 w-full;
+  }
+
+  /* ── Toast ────────────────────────────────────────────── */
+  .toast {
+    @apply fixed bottom-6 right-6 z-[9000] bg-dark-900 text-stone-100
+           dark:bg-stone-100 dark:text-dark-900 px-5 py-3.5
+           flex items-center gap-3 shadow-2xl text-sm font-body max-w-xs;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(.16,1,.3,1);
+  }
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* ── Back to Top ──────────────────────────────────────── */
+  .back-to-top {
+    @apply fixed bottom-6 left-6 z-50 w-10 h-10 bg-luxe-500
+           hover:bg-luxe-600 text-white flex items-center justify-center
+           text-sm shadow-luxe hover:-translate-y-0.5 transition-all;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.2s;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── Marquee wrapper ──────────────────────────────────── */
+  .marquee-track {
+    @apply animate-marquee inline-flex gap-16 whitespace-nowrap;
+  }
+
+  /* ── Grain overlay ────────────────────────────────────── */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ── Star rating ──────────────────────────────────────── */
+  .stars {
+    @apply text-luxe-400 text-xs;
+  }
+
+  /* ── Badge ────────────────────────────────────────────── */
+  .badge-sale {
+    @apply text-[10px] font-sans tracking-widest uppercase px-2 py-1
+           bg-luxe-500 text-white;
+  }
+  .badge-new {
+    @apply text-[10px] font-sans tracking-widest uppercase px-2 py-1
+           bg-dark-900 text-white;
+  }
+
+  /* ── Category pill ────────────────────────────────────── */
+  .cat-pill {
+    @apply text-sm font-body text-stone-600 dark:text-stone-400
+           w-full text-left hover:text-luxe-600 dark:hover:text-luxe-400
+           transition-colors duration-200 py-1;
+  }
+  .cat-pill.active {
+    @apply text-luxe-600 dark:text-luxe-400 font-semibold;
+  }
+
+  /* ── Stat number ──────────────────────────────────────── */
+  .stat-num {
+    @apply font-display text-5xl text-luxe-400;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  /* ── Tab button ───────────────────────────────────────── */
+  .tab-btn {
+    @apply text-xs font-sans tracking-widest uppercase px-6 py-3
+           text-stone-500 hover:text-luxe-600 whitespace-nowrap
+           transition-colors duration-200 border-b-2 border-transparent;
+  }
+  .tab-btn.active {
+    @apply text-luxe-600 dark:text-luxe-400 border-luxe-500;
+  }
+}
+
+/* ============================================================
+   UTILITIES LAYER — one-off helper classes
+============================================================ */
+@layer utilities {
+  /* Aspect ratio helpers (extra) */
+  .aspect-3-4  { aspect-ratio: 3 / 4; }
+  .aspect-4-5  { aspect-ratio: 4 / 5; }
+  .aspect-16-9 { aspect-ratio: 16 / 9; }
+  .aspect-16-10{ aspect-ratio: 16 / 10; }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Skeleton loading shimmer */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.5s infinite;
+  }
+  .dark .skeleton {
+    background: linear-gradient(90deg, #292524 25%, #3c3735 50%, #292524 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.5s infinite;
+  }
+
+  /* Hero slide opacity util */
+  .hero-slide-active  { opacity: 1 !important; }
+  .hero-slide-inactive{ opacity: 0 !important; }
+
+  /* Dot indicator */
+  .hero-dot-active {
+    width: 24px !important;
+    background: rgba(255,255,255,0.9) !important;
+  }
+
+  /* Product quick-add sliding panel */
+  .quick-add {
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover .quick-add {
+    transform: translateY(0);
+  }
+
+  /* Wish button - hidden until hover */
+  .wish-trigger {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .product-card:hover .wish-trigger {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   KEYFRAMES (not in the extend — used by custom CSS above)
+============================================================ */
+@keyframes skeleton {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes progress {
+  from { width: 0;    }
+  to   { width: 100%; }
+}
