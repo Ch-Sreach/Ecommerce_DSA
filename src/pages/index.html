@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXE Fashion — Premium E-Commerce | Cambodia</title>
+  <meta name="description" content="Discover premium fashion at LUXE — Cambodia's leading online fashion store. Shop curated clothing, accessories &amp; more with fast delivery and easy returns." />
+  <meta name="keywords" content="fashion, clothing, Cambodia, online shop, premium, e-commerce, accessories" />
+  <meta name="author" content="LUXE Fashion" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://luxefashion.com/" />
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://luxefashion.com/" />
+  <meta property="og:title"       content="LUXE — Premium Fashion E-Commerce" />
+  <meta property="og:description" content="Cambodia's leading online fashion destination." />
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="LUXE — Premium Fashion E-Commerce" />
+  <meta name="twitter:description" content="Cambodia's leading online fashion destination." />
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ClothingStore",
+    "name":"LUXE Fashion",
+    "url":"https://luxefashion.com",
+    "description":"Premium fashion e-commerce based in Phnom Penh, Cambodia.",
+    "address":{"@type":"PostalAddress","addressLocality":"Phnom Penh","addressCountry":"KH"},
+    "telephone":"+855-23-456-789",
+    "openingHours":"Mo-Sa 08:00-18:00"
+  }
+  </script>
+
+  <!-- Logo -->
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+  <!-- ── Fonts ─────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ── Icons ─────────────────────────────────────────── -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- ── Tailwind CLI Output ───────────────────────────── -->
+  <link rel="stylesheet" href="../../dist/output.css" />
+
+  <style>
+    /* Hero slide transitions */
+    .hero-slide { transition: opacity 0.8s ease; }
+    /* Product card hover — managed via Tailwind group in input.css */
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-900 dark:bg-dark-900 dark:text-stone-100 font-body antialiased">
+
+  <!-- ══ ANNOUNCEMENT BAR ══════════════════════════════ -->
+  <div class="bg-dark-900 dark:bg-dark-800 text-luxe-300 text-xs font-sans py-2 overflow-hidden">
+    <div class="marquee-track">
+      <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+      <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+      <span class="pr-16">✦ 30-Day Easy Returns</span>
+      <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+      <span class="pr-16">✦ Exclusive Members-Only Deals</span>
+      <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+      <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+      <span class="pr-16">✦ 30-Day Easy Returns</span>
+      <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+      <span class="pr-16">✦ Exclusive Members-Only Deals</span>
+    </div>
+  </div>
+
+  <!-- ══ NAVBAR ════════════════════════════════════════ -->
+  <header id="navbar" class="sticky top-0 z-[100] bg-stone-50/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-stone-200 dark:border-dark-700 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img
+          src="/images/logo.png"
+          alt="LUXE Fashion Logo"
+          class="h-10 w-10 object-contain"
+        >
+        <span class="font-display text-2xl tracking-[0.15em] font-bold">
+          LUXE
+        </span>
+      </a>
+      <ul class="hidden md:flex items-center gap-1">
+        <li><a href="index.html"      class="nav-link hover-underline" aria-current="page">Home</a></li>
+        <li><a href="collection.html" class="nav-link hover-underline">Collection</a></li>
+        <li><a href="blog.html"       class="nav-link hover-underline">Blog</a></li>
+        <li><a href="about.html"      class="nav-link hover-underline">About</a></li>
+        <li><a href="contact.html"    class="nav-link hover-underline">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSearch()" class="w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="wishlist.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+          <i class="fa-regular fa-heart"></i>
+          <span id="wish-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span>
+        </a>
+        <a href="cart.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span>
+        </a>
+        <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 hover:text-luxe-600 transition-all text-sm"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        <button onclick="toggleMobile()" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+          <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
+          <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
+          <span class="w-3 h-px bg-stone-700 dark:bg-stone-300 self-end"></span>
+        </button>
+      </div>
+    </nav>
+    <div id="search-bar" class="hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-4 py-3">
+      <div class="max-w-2xl mx-auto relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+        <input type="search" placeholder="Search products, brands, categories…" class="w-full pl-11 pr-4 py-2.5 bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-600 rounded-full text-sm focus:outline-none focus:border-luxe-400 transition-colors font-body" />
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-6 pb-5">
+      <ul class="flex flex-col gap-1 pt-3">
+        <li><a href="index.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Home</a></li>
+        <li><a href="collection.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Collection</a></li>
+        <li><a href="blog.html"       class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Blog</a></li>
+        <li><a href="about.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">About</a></li>
+        <li><a href="contact.html"    class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══ HERO ════════════════════════════════════════ -->
+    <section class="relative h-[92vh] min-h-[600px] overflow-hidden grain" aria-label="Hero Banner">
+      <!-- Slides -->
+      <div id="hero-slides" class="absolute inset-0">
+        <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('/images/banner1.jpg');opacity:1;z-index:1"></div>
+        <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('/images/banner.jpg');opacity:0;z-index:0"></div>
+        <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('/images/banner-img-1.jpg');opacity:0;z-index:0"></div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10"></div>
+
+      <div class="relative z-20 h-full flex items-center px-6 md:px-16 max-w-7xl mx-auto">
+        <div class="max-w-lg animate-fade-up">
+          <p class="section-label text-luxe-300">New Season 2026</p>
+          <h1 class="font-display text-5xl md:text-7xl font-light text-white leading-[1.05] mb-5">
+            Where Style<br><em>Meets Soul</em>
+          </h1>
+          <p class="text-stone-300 text-base mb-8 font-body font-light max-w-sm leading-relaxed">
+            Curated premium fashion from Cambodia's most trusted online boutique.
+          </p>
+          <div class="flex gap-3 flex-wrap">
+            <a href="collection.html" class="btn-primary">Shop Now</a>
+            <a href="about.html"      class="btn-ghost-white">Our Story</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <button class="hero-dot w-6 h-1 bg-white/90 rounded-full transition-all" onclick="goSlide(0)" aria-label="Slide 1"></button>
+        <button class="hero-dot w-2  h-1 bg-white/40 rounded-full transition-all" onclick="goSlide(1)" aria-label="Slide 2"></button>
+        <button class="hero-dot w-2  h-1 bg-white/40 rounded-full transition-all" onclick="goSlide(2)" aria-label="Slide 3"></button>
+      </div>
+      <button onclick="prevSlide()" aria-label="Previous"
+        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/20 hover:bg-black/40 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all text-sm">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button onclick="nextSlide()" aria-label="Next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/20 hover:bg-black/40 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all text-sm">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </section>
+
+    <!-- ══ TRUST BADGES ══════════════════════════════════ -->
+    <section class="border-y border-stone-200 dark:border-dark-700 bg-white dark:bg-dark-800 py-5" aria-label="Trust badges">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-luxe-50 dark:bg-dark-700 flex items-center justify-center text-luxe-600 text-sm shrink-0"><i class="fa-solid fa-truck"></i></div>
+          <div><p class="text-xs font-sans font-semibold text-stone-800 dark:text-stone-200">Free Shipping</p><p class="text-xs text-stone-500 font-body">On orders over $50</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-luxe-50 dark:bg-dark-700 flex items-center justify-center text-luxe-600 text-sm shrink-0"><i class="fa-solid fa-rotate-left"></i></div>
+          <div><p class="text-xs font-sans font-semibold text-stone-800 dark:text-stone-200">Easy Returns</p><p class="text-xs text-stone-500 font-body">30-day policy</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-luxe-50 dark:bg-dark-700 flex items-center justify-center text-luxe-600 text-sm shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+          <div><p class="text-xs font-sans font-semibold text-stone-800 dark:text-stone-200">Secure Payment</p><p class="text-xs text-stone-500 font-body">SSL encrypted</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-luxe-50 dark:bg-dark-700 flex items-center justify-center text-luxe-600 text-sm shrink-0"><i class="fa-solid fa-headset"></i></div>
+          <div><p class="text-xs font-sans font-semibold text-stone-800 dark:text-stone-200">24/7 Support</p><p class="text-xs text-stone-500 font-body">Always here for you</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ NEW COLLECTION ════════════════════════════════ -->
+    <section class="py-20 px-6 max-w-7xl mx-auto" id="collection">
+      <div class="text-center mb-12">
+        <span class="section-label">Explore</span>
+        <h2 class="section-title">New Collection</h2>
+      </div>
+      <!-- Tab nav -->
+      <div class="flex justify-center border-b border-stone-200 dark:border-dark-700 mb-10 overflow-x-auto">
+        <button onclick="openTab('all',this)"        class="tab-btn active">All</button>
+        <button onclick="openTab('bestseller',this)" class="tab-btn">Best Sellers</button>
+        <button onclick="openTab('new',this)"        class="tab-btn">New Arrivals</button>
+        <button onclick="openTab('sale',this)"       class="tab-btn">On Sale</button>
+      </div>
+      <!-- Tab panels -->
+      <div id="tab-all"        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+      <div id="tab-bestseller" class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+      <div id="tab-new"        class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+      <div id="tab-sale"       class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+
+      <div class="text-center mt-12">
+        <a href="collection.html" class="btn-outline">View All Products</a>
+      </div>
+    </section>
+
+    <!-- ══ EDITORIAL BANNER ══════════════════════════════ -->
+    <section aria-label="Category editorial">
+      <div class="grid grid-cols-1 md:grid-cols-2 min-h-[480px]">
+        <div class="relative overflow-hidden">
+          <img src="/images/men-pic.jpeg" alt="Men's collection" class="w-full h-full object-cover" style="min-height:300px" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-10">
+            <p class="section-label text-luxe-300">Men's Edit</p>
+            <h3 class="font-display text-3xl text-white mb-4">Sharp &amp; Refined</h3>
+            <a href="collection.html" class="w-fit px-6 py-2 bg-white text-dark-900 text-xs font-sans tracking-widest uppercase hover:bg-luxe-400 hover:text-white transition-all">Shop Men</a>
+          </div>
+        </div>
+        <div class="grid grid-rows-2">
+          <div class="relative overflow-hidden">
+            <img src="/images/women-collection.jpeg" alt="Women's collection" class="w-full h-full object-cover" loading="lazy"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+              <h3 class="font-display text-2xl text-white mb-3">Women's Collection</h3>
+              <a href="collection.html" class="w-fit px-5 py-2 bg-white text-dark-900 text-xs font-sans tracking-widest uppercase hover:bg-luxe-400 hover:text-white transition-all">Shop Women</a>
+            </div>
+          </div>
+          <div class="relative overflow-hidden">
+            <img src="/images/accessories-pic.webp" alt="Accessories" class="w-700 h-full object-cover" loading="lazy"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+              <h3 class="font-display text-2xl text-white mb-3">Accessories</h3>
+              <a href="collection.html" class="w-fit px-5 py-2 bg-white text-dark-900 text-xs font-sans tracking-widest uppercase hover:bg-luxe-400 hover:text-white transition-all">Shop Accessories</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ GRAND SALE ═════════════════════════════════════ -->
+    <section class="relative overflow-hidden grain py-24" style="background:url('/images/banner2.jpeg') center/cover no-repeat" aria-label="Grand Sale">
+      <div class="absolute inset-0 bg-black/65"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+        <span class="section-label text-luxe-300">Limited Time</span>
+        <h2 class="font-display text-5xl md:text-7xl text-white font-light mb-2">Grand Sale</h2>
+        <div class="font-display text-8xl font-bold gradient-text mb-6">70% OFF</div>
+        <p class="text-stone-300 mb-10 font-body max-w-lg mx-auto">Don't miss Cambodia's biggest fashion event of 2026.</p>
+        <!-- Live Countdown -->
+        <div class="flex justify-center gap-4 mb-10">
+          <div class="w-20 h-20 bg-black/40 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center">
+            <span id="cd-h" class="font-display text-2xl text-white">12</span>
+            <span class="text-stone-400 text-[9px] tracking-widest uppercase font-sans">Hours</span>
+          </div>
+          <div class="w-20 h-20 bg-black/40 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center">
+            <span id="cd-m" class="font-display text-2xl text-white">34</span>
+            <span class="text-stone-400 text-[9px] tracking-widest uppercase font-sans">Mins</span>
+          </div>
+          <div class="w-20 h-20 bg-black/40 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center">
+            <span id="cd-s" class="font-display text-2xl text-white">00</span>
+            <span class="text-stone-400 text-[9px] tracking-widest uppercase font-sans">Secs</span>
+          </div>
+        </div>
+        <a href="collection.html" class="btn-primary inline-block">Shop Sale Now</a>
+      </div>
+    </section>
+
+    <!-- ══ EDITOR'S PICKS ════════════════════════════════ -->
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <span class="section-label">Handpicked</span>
+          <h2 class="section-title">Editor's Picks</h2>
+        </div>
+        <a href="collection.html" class="text-xs font-sans tracking-widest uppercase text-luxe-600 hover:text-luxe-800 hover-underline hidden md:block">View All →</a>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6" id="editors-picks"></div>
+    </section>
+
+    <!-- ══ TESTIMONIALS ══════════════════════════════════ -->
+    <section class="py-20 bg-stone-100 dark:bg-dark-800 border-y border-stone-200 dark:border-dark-700" aria-label="Testimonials">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <span class="section-label">Happy Clients</span>
+          <h2 class="section-title">What They Say</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <blockquote class="bg-white dark:bg-dark-700 p-8 border border-stone-200 dark:border-dark-600">
+            <div class="stars mb-4">★★★★★</div>
+            <p class="font-body text-stone-600 dark:text-stone-400 italic mb-6 leading-relaxed">"Absolutely love the quality. The packaging makes it feel like a luxury gift. LUXE has become my go-to store for every occasion."</p>
+            <div class="flex items-center gap-3">
+              <img src="/images/cus2.jpg" alt="Sreymom Chan" class="w-10 h-10 rounded-full object-cover"/>
+              <div>
+                <p class="text-sm font-sans font-semibold">Thorm Sophal</p>
+                <p class="text-xs text-stone-500 font-body">Phnom Penh, Cambodia</p>
+              </div>
+            </div>
+          </blockquote>
+          <blockquote class="bg-white dark:bg-dark-700 p-8 border border-stone-200 dark:border-dark-600">
+            <div class="stars mb-4">★★★★★</div>
+            <p class="font-body text-stone-600 dark:text-stone-400 italic mb-6 leading-relaxed">"Fast delivery, genuine products, excellent customer service. Ordered Monday, received Wednesday. Highly recommend LUXE!"</p>
+            <div class="flex items-center gap-3">
+              <img src="/images/cus3.jpg" alt="Dara Kosal" class="w-10 h-10 rounded-full object-cover"/>
+              <div>
+                <p class="text-sm font-sans font-semibold">Thai huoyly</p>
+                <p class="text-xs text-stone-500 font-body">Siem Reap, Cambodia</p>
+              </div>
+            </div>
+          </blockquote>
+          <blockquote class="bg-white dark:bg-dark-700 p-8 border border-stone-200 dark:border-dark-600">
+            <div class="stars mb-4">★★★★★</div>
+            <p class="font-body text-stone-600 dark:text-stone-400 italic mb-6 leading-relaxed">"Really love all of your products. Incredible range from casual to formal. The loyalty rewards program is fantastic — I've already saved so much this year!"</p>
+            <div class="flex items-center gap-3">
+              <img src="/images/cus1.jpg" alt="Bopha Rith" class="w-10 h-10 rounded-full object-cover"/>
+              <div>
+                <p class="text-sm font-sans font-semibold">Khuon Sopheap</p>
+                <p class="text-xs text-stone-500 font-body">Battambang, Cambodia</p>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ NEWSLETTER ════════════════════════════════════ -->
+    <section class="newsletter-grad py-20 px-6" aria-label="Newsletter signup">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="section-label text-luxe-300">Stay Connected</span>
+        <h2 class="font-display text-4xl text-white mb-3 font-light">Join the Inner Circle</h2>
+        <p class="text-stone-400 font-body mb-8">Early access to new arrivals, exclusive deals, and style inspiration. No spam, ever.</p>
+        <div class="flex gap-2 max-w-md mx-auto">
+          <input type="email" placeholder="Your email address" class="flex-1 px-5 py-3 bg-white/10 border border-white/20 text-white placeholder-stone-500 text-sm font-body focus:outline-none focus:border-luxe-400 transition-colors" />
+          <button onclick="handleSubscribe()" class="px-6 py-3 bg-luxe-500 hover:bg-luxe-600 text-white text-xs font-sans tracking-widest uppercase whitespace-nowrap transition-colors">Subscribe</button>
+        </div>
+        <p class="text-stone-600 text-xs mt-4 font-body">Unsubscribe anytime. We respect your privacy.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════ -->
+  <footer class="bg-dark-900 text-stone-500">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-dark-700">
+        <div>
+          <div class="font-display text-2xl text-white tracking-widest mb-4">LUXE</div>
+          <p class="text-sm font-body leading-relaxed mb-6">Cambodia's premium online fashion destination. Curating the finest pieces, delivered with love.</p>
+          <div class="space-y-2 text-xs font-body">
+            <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-luxe-500 w-4"></i>Street 271, Phnom Penh, Cambodia</p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-luxe-500 w-4"></i>+855 23 456 789</p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-luxe-500 w-4"></i>hello@luxefashion.com</p>
+          </div>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Navigation</h5>
+          <ul class="space-y-3">
+            <li><a href="index.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">Home</a></li>
+            <li><a href="collection.html" class="text-sm font-body hover:text-luxe-400 transition-colors">Collection</a></li>
+            <li><a href="blog.html"       class="text-sm font-body hover:text-luxe-400 transition-colors">Style Journal</a></li>
+            <li><a href="about.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">About Us</a></li>
+            <li><a href="contact.html"    class="text-sm font-body hover:text-luxe-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Support</h5>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">FAQs</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Shipping &amp; Delivery</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Returns &amp; Refunds</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Size Guide</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Follow LUXE</h5>
+          <div class="flex gap-2 mb-8">
+            <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Newsletter</h5>
+          <div class="flex">
+            <input type="email" placeholder="your@email.com" class="flex-1 px-3 py-2.5 bg-dark-800 border border-dark-600 text-sm font-body text-stone-300 placeholder-stone-600 focus:outline-none focus:border-luxe-500 transition-colors" />
+            <button onclick="handleSubscribe()" class="px-4 bg-luxe-500 hover:bg-luxe-600 text-white transition-colors"><i class="fa-solid fa-arrow-right text-sm"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p class="text-xs font-body text-stone-600">© 2026 LUXE Fashion. All rights reserved. Designed with <span class="text-luxe-500">♥</span> in Cambodia.</p>
+        <div class="flex items-center gap-3 text-xs text-stone-600"><span>Visa</span><span>•</span><span>Mastercard</span><span>•</span><span>PayPal</span><span>•</span><span>ABA Pay</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check text-luxe-400"></i>
+    <span id="toast-msg">Done!</span>
+  </div>
+  <!-- Back to top -->
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="btt" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- ══ JS ═════════════════════════════════════════════ -->
+  <script src="../js/main.js"></script>
+  <script>
+    // Home-page only: render tabs & editor picks
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTab('all');
+      renderTab('bestseller');
+      renderTab('new');
+      renderTab('sale');
+      renderEditorsPicks();
+      startHero();
+      startCountdown();
+    });
+
+    function renderTab(tab) {
+      const list = tab === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.tags.includes(tab));
+      const el = document.getElementById('tab-' + tab);
+      if (el) el.innerHTML = list.slice(0, 8).map(productCard).join('');
+    }
+    function renderEditorsPicks() {
+      const picks = [PRODUCTS[5], PRODUCTS[9], PRODUCTS[13], PRODUCTS[6]].filter(Boolean);
+      const el = document.getElementById('editors-picks');
+      if (el) el.innerHTML = picks.map(productCard).join('');
+    }
+    function openTab(name, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      ['all','bestseller','new','sale'].forEach(t => {
+        document.getElementById('tab-'+t).classList.toggle('hidden', t !== name);
+        document.getElementById('tab-'+t).classList.toggle('grid',  t === name);
+      });
+    }
+  </script>
+</body>
+</html>
