@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart — LUXE Fashion</title>
+  <meta name="description" content="Your shopping cart at LUXE Fashion." />
+  <meta name="robots" content="noindex" />
+  <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../../dist/output.css" />
+  <link rel="shortcut icon" href="../../images/logo.png" type="image/x-icon">
+
+</head>
+<body class="bg-stone-50 text-stone-900 dark:bg-dark-900 dark:text-stone-100 font-body antialiased">
+
+  <!-- ══ ANNOUNCEMENT BAR ══════════════════════════════ -->
+  <div class="bg-dark-900 dark:bg-dark-800 text-luxe-300 text-xs font-sans py-2 overflow-hidden">
+    <div class="marquee-track">
+      <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+      <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+      <span class="pr-16">✦ 30-Day Easy Returns</span>
+      <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+      <span class="pr-16">✦ Free Shipping on Orders Over $50</span>
+      <span class="pr-16">✦ New Season 2026 Collection Now Live</span>
+      <span class="pr-16">✦ 30-Day Easy Returns</span>
+      <span class="pr-16">✦ Save Up to 70% Off Grand Sale</span>
+    </div>
+  </div>
+
+  <!-- ══ NAVBAR ════════════════════════════════════════ -->
+  <header id="navbar" class="sticky top-0 z-[100] bg-stone-50/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-stone-200 dark:border-dark-700 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-display text-2xl tracking-[0.15em] font-bold">
+        <span class="w-6 h-6 bg-luxe-500 flex items-center justify-center">
+          <i class="fa-solid fa-gem text-white text-xs"></i>
+        </span>LUXE
+      </a>
+      <ul class="hidden md:flex items-center gap-1">
+        <li><a href="index.html"      class="nav-link hover-underline">Home</a></li>
+        <li><a href="collection.html" class="nav-link hover-underline">Collection</a></li>
+        <li><a href="blog.html"       class="nav-link hover-underline">Blog</a></li>
+        <li><a href="about.html"      class="nav-link hover-underline">About</a></li>
+        <li><a href="contact.html"    class="nav-link hover-underline">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSearch()" class="w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="wishlist.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm">
+          <i class="fa-regular fa-heart"></i>
+          <span id="wish-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span>
+        </a>
+        <a href="cart.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-luxe-600 bg-luxe-50 dark:bg-dark-700 transition-all text-sm">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span>
+        </a>
+        <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 hover:text-luxe-600 transition-all text-sm"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        <button onclick="toggleMobile()" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+          <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
+          <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
+          <span class="w-3 h-px bg-stone-700 dark:bg-stone-300 self-end"></span>
+        </button>
+      </div>
+    </nav>
+    <div id="search-bar" class="hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-4 py-3">
+      <div class="max-w-2xl mx-auto relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+        <input type="search" placeholder="Search products, brands, categories…" class="w-full pl-11 pr-4 py-2.5 bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-600 rounded-full text-sm focus:outline-none focus:border-luxe-400 transition-colors font-body" />
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-6 pb-5">
+      <ul class="flex flex-col gap-1 pt-3">
+        <li><a href="index.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Home</a></li>
+        <li><a href="collection.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Collection</a></li>
+        <li><a href="blog.html"       class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Blog</a></li>
+        <li><a href="about.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">About</a></li>
+        <li><a href="contact.html"    class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16 min-h-[60vh]">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="text-xs font-body text-stone-500 mb-8 flex items-center gap-2">
+      <a href="index.html" class="hover:text-luxe-600 transition-colors">Home</a>
+      <span>›</span>
+      <span class="text-stone-700 dark:text-stone-300">Shopping Cart</span>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="flex items-center justify-between mb-10 flex-wrap gap-4">
+      <div>
+        <span class="section-label">Your Selection</span>
+        <h1 class="font-display text-4xl font-light">Shopping Cart</h1>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="clearCart()" id="clear-btn"
+          class="hidden px-5 py-2.5 border border-stone-300 dark:border-dark-600 text-stone-600 dark:text-stone-400 text-xs font-sans tracking-widest uppercase hover:border-stone-400 transition-colors">
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- Count -->
+    <p id="cart-count" class="text-sm font-body text-stone-500 mb-8"></p>
+
+    <!-- Main layout: Items + Summary -->
+    <div class="flex flex-col lg:flex-row gap-10" id="cart-layout">
+
+      <!-- Cart Items -->
+      <div class="flex-1">
+        <div id="cart-grid" class="space-y-4"></div>
+      </div>
+
+      <!-- Order Summary -->
+      <aside id="cart-summary" class="hidden w-full lg:w-80 shrink-0">
+        <div class="bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-700 p-6 sticky top-24">
+          <h2 class="font-display text-xl font-light mb-6 pb-4 border-b border-stone-200 dark:border-dark-700">Order Summary</h2>
+
+          <div class="space-y-3 mb-6 text-sm font-body">
+            <div class="flex justify-between">
+              <span class="text-stone-500">Subtotal</span>
+              <span id="subtotal" class="font-sans font-semibold">$0.00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-stone-500">Shipping</span>
+              <span id="shipping-cost" class="font-sans font-semibold text-green-600">Free</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-stone-500">Discount</span>
+              <span id="discount-display" class="font-sans font-semibold text-luxe-600">—</span>
+            </div>
+          </div>
+
+          <!-- Promo Code -->
+          <div class="mb-6">
+            <label class="text-xs font-sans tracking-widest uppercase text-stone-600 dark:text-stone-400 mb-2 block">Promo Code</label>
+            <div class="flex gap-0">
+              <input id="promo-input" type="text" placeholder="Enter code"
+                class="flex-1 px-3 py-2.5 bg-stone-50 dark:bg-dark-700 border border-stone-200 dark:border-dark-600 text-sm font-body focus:outline-none focus:border-luxe-400 transition-colors text-stone-700 dark:text-stone-300" />
+              <button onclick="applyPromo()" class="px-4 py-2.5 bg-dark-900 dark:bg-luxe-500 text-white text-xs font-sans tracking-widest uppercase hover:bg-luxe-600 transition-colors">Apply</button>
+            </div>
+            <p id="promo-msg" class="text-xs font-body mt-1.5 hidden"></p>
+          </div>
+
+          <div class="border-t border-stone-200 dark:border-dark-700 pt-4 mb-6">
+            <div class="flex justify-between items-baseline">
+              <span class="font-sans font-semibold text-stone-800 dark:text-stone-200">Total</span>
+              <span id="cart-total" class="font-display text-2xl text-luxe-600 dark:text-luxe-400">$0.00</span>
+            </div>
+            <p class="text-xs text-stone-400 font-body mt-1">Taxes calculated at checkout</p>
+          </div>
+
+          <button onclick="handleCheckout()" class="w-full py-4 bg-dark-900 dark:bg-luxe-500 text-white text-xs font-sans tracking-widest uppercase hover:bg-luxe-600 transition-colors mb-3">
+            Proceed to Checkout
+          </button>
+          <a href="collection.html" class="block text-center w-full py-3 border border-stone-300 dark:border-dark-600 text-stone-700 dark:text-stone-300 text-xs font-sans tracking-widest uppercase hover:border-luxe-400 hover:text-luxe-600 transition-colors">
+            Continue Shopping
+          </a>
+
+          <!-- Trust badges -->
+          <div class="mt-6 pt-5 border-t border-stone-200 dark:border-dark-700 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-body text-stone-500">
+              <i class="fa-solid fa-shield-halved text-luxe-500 w-4"></i> Secure SSL checkout
+            </div>
+            <div class="flex items-center gap-2 text-xs font-body text-stone-500">
+              <i class="fa-solid fa-rotate-left text-luxe-500 w-4"></i> 30-day easy returns
+            </div>
+            <div class="flex items-center gap-2 text-xs font-body text-stone-500">
+              <i class="fa-solid fa-truck text-luxe-500 w-4"></i> Free shipping over $50
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty" class="hidden text-center py-24">
+      <div class="w-20 h-20 rounded-full bg-stone-100 dark:bg-dark-700 flex items-center justify-center mx-auto mb-6">
+        <i class="fa-regular fa-bag-shopping text-3xl text-stone-400"></i>
+      </div>
+      <h2 class="font-display text-2xl font-light mb-3">Your cart is empty</h2>
+      <p class="text-stone-500 font-body mb-8 max-w-sm mx-auto">Looks like you haven't added anything to your cart yet.</p>
+      <a href="collection.html" class="btn-primary inline-block">Browse Collection</a>
+    </div>
+
+    <!-- You May Also Like -->
+    <div class="mt-20" id="suggestions-section">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <span class="section-label">Handpicked</span>
+          <h2 class="font-display text-3xl font-light">You May Also Like</h2>
+        </div>
+        <a href="collection.html" class="text-xs font-sans tracking-widest uppercase text-luxe-600 hover-underline hidden md:block">View All →</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5" id="suggestions-grid"></div>
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════ -->
+  <footer class="bg-dark-900 text-stone-500 mt-16">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-dark-700">
+        <div>
+          <div class="font-display text-2xl text-white tracking-widest mb-4">LUXE</div>
+          <p class="text-sm font-body leading-relaxed mb-6">Cambodia's premium online fashion destination. Curating the finest pieces, delivered with love.</p>
+          <div class="space-y-2 text-xs font-body">
+            <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-luxe-500 w-4"></i>Street 271, Phnom Penh, Cambodia</p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-luxe-500 w-4"></i>+855 23 456 789</p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-luxe-500 w-4"></i>hello@luxefashion.com</p>
+          </div>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Navigation</h5>
+          <ul class="space-y-3">
+            <li><a href="index.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">Home</a></li>
+            <li><a href="collection.html" class="text-sm font-body hover:text-luxe-400 transition-colors">Collection</a></li>
+            <li><a href="blog.html"       class="text-sm font-body hover:text-luxe-400 transition-colors">Style Journal</a></li>
+            <li><a href="about.html"      class="text-sm font-body hover:text-luxe-400 transition-colors">About Us</a></li>
+            <li><a href="contact.html"    class="text-sm font-body hover:text-luxe-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Support</h5>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">FAQs</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Shipping &amp; Delivery</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Returns &amp; Refunds</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Size Guide</a></li>
+            <li><a href="#" class="text-sm font-body hover:text-luxe-400 transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-5">Follow LUXE</h5>
+          <div class="flex gap-2 mb-8">
+            <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+          <h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Newsletter</h5>
+          <div class="flex">
+            <input type="email" placeholder="your@email.com" class="flex-1 px-3 py-2.5 bg-dark-800 border border-dark-600 text-sm font-body text-stone-300 placeholder-stone-600 focus:outline-none focus:border-luxe-500 transition-colors" />
+            <button onclick="handleSubscribe()" class="px-4 bg-luxe-500 hover:bg-luxe-600 text-white transition-colors"><i class="fa-solid fa-arrow-right text-sm"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p class="text-xs font-body text-stone-600">© 2026 LUXE Fashion. All rights reserved. Designed with <span class="text-luxe-500">♥</span> in Cambodia.</p>
+        <div class="flex items-center gap-3 text-xs text-stone-600"><span>Visa</span><span>•</span><span>Mastercard</span><span>•</span><span>PayPal</span><span>•</span><span>ABA Pay</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check text-luxe-400"></i>
+    <span id="toast-msg">Done!</span>
+  </div>
+  <!-- Back to top -->
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="btt" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="../js/main.js"></script>
+  <script>
+    let promoApplied = false;
+    let promoDiscount = 0;
+    const PROMO_CODES = { 'LUXE10': 10, 'SAVE20': 20, 'WELCOME15': 15 };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+      renderSuggestions();
+    });
+
+    function renderCart() {
+      const grid    = document.getElementById('cart-grid');
+      const empty   = document.getElementById('cart-empty');
+      const summary = document.getElementById('cart-summary');
+      const layout  = document.getElementById('cart-layout');
+      const clearBtn = document.getElementById('clear-btn');
+      const countEl = document.getElementById('cart-count');
+      const sugSec  = document.getElementById('suggestions-section');
+
+      if (!cart.length) {
+        layout.classList.add('hidden');
+        empty.classList.remove('hidden');
+        clearBtn.classList.add('hidden');
+        countEl.textContent = '';
+        sugSec.style.display = '';
+        updateTotals();
+        return;
+      }
+
+      layout.classList.remove('hidden');
+      empty.classList.add('hidden');
+      summary.classList.remove('hidden');
+      clearBtn.classList.remove('hidden');
+      countEl.textContent = `${cart.length} item${cart.length !== 1 ? 's' : ''} in your cart`;
+
+      const items = PRODUCTS.filter(p => cart.includes(p.id));
+      grid.innerHTML = items.map(p => cartRow(p)).join('');
+      updateTotals();
+    }
+
+    function cartRow(p) {
+      const discount = Math.round((1 - p.price / p.old) * 100);
+      const isWish   = wishlist.includes(p.id);
+      return `
+        <div class="bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-700 p-4 flex gap-4 items-start" id="cart-row-${p.id}">
+          <!-- Product Image -->
+          <a href="product.html?id=${p.id}" class="shrink-0 w-24 h-28 md:w-28 md:h-36 overflow-hidden bg-stone-100 dark:bg-dark-700 block">
+            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy"/>
+          </a>
+          <!-- Info -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="text-[10px] font-sans tracking-widest uppercase px-2 py-0.5 ${p.badge === 'New' ? 'bg-dark-900 text-white' : 'bg-luxe-500 text-white'} mr-2">${p.badge}</span>
+                ${discount > 0 ? `<span class="text-[10px] font-sans px-2 py-0.5 bg-green-600 text-white">-${discount}%</span>` : ''}
+              </div>
+              <!-- Remove -->
+              <button onclick="removeFromCart(${p.id})" aria-label="Remove item"
+                class="text-stone-400 hover:text-red-500 transition-colors shrink-0 p-1">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+            <a href="product.html?id=${p.id}" class="block font-body text-sm font-medium text-stone-800 dark:text-stone-200 mt-2 mb-1 hover:text-luxe-600 transition-colors leading-snug">${p.name}</a>
+            <p class="text-xs font-body text-stone-400 mb-3">Size: M · Color: Default</p>
+            <div class="flex items-center justify-between flex-wrap gap-3">
+              <!-- Qty -->
+              <div class="flex items-center border border-stone-200 dark:border-dark-600">
+                <button onclick="changeItemQty(${p.id},-1)" class="w-8 h-8 text-stone-500 hover:text-luxe-600 transition-colors">−</button>
+                <span id="qty-${p.id}" class="w-8 text-center text-sm font-sans font-semibold">1</span>
+                <button onclick="changeItemQty(${p.id},1)"  class="w-8 h-8 text-stone-500 hover:text-luxe-600 transition-colors">+</button>
+              </div>
+              <!-- Price -->
+              <div class="flex items-center gap-2">
+                <span class="font-sans font-bold text-luxe-600 dark:text-luxe-400 text-sm">$${p.price}</span>
+                <span class="text-xs text-stone-400 line-through font-body">$${p.old}</span>
+              </div>
+            </div>
+            <!-- Move to Wishlist -->
+            <button onclick="moveToWishlist(${p.id})"
+              class="mt-3 text-xs font-body text-stone-400 hover:text-luxe-600 transition-colors flex items-center gap-1.5">
+              <i class="${isWish ? 'fa-solid text-luxe-600' : 'fa-regular'} fa-heart"></i>
+              ${isWish ? 'Already in Wishlist' : 'Move to Wishlist'}
+            </button>
+          </div>
+        </div>`;
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(c => c !== id);
+      localStorage.setItem('luxe_cart', JSON.stringify(cart));
+      updateBadges();
+      const row = document.getElementById('cart-row-' + id);
+      if (row) {
+        row.style.opacity = '0';
+        row.style.transition = 'opacity 0.3s';
+        setTimeout(() => { renderCart(); }, 300);
+      }
+      showToast('Item removed from cart');
+    }
+
+    function clearCart() {
+      cart.length = 0;
+      localStorage.setItem('luxe_cart', JSON.stringify(cart));
+      updateBadges();
+      renderCart();
+      showToast('Cart cleared');
+    }
+
+    function changeItemQty(id, delta) {
+      const el = document.getElementById('qty-' + id);
+      if (!el) return;
+      let val = Math.max(1, Math.min(99, parseInt(el.textContent) + delta));
+      el.textContent = val;
+      updateTotals();
+    }
+
+    function getItemQty(id) {
+      const el = document.getElementById('qty-' + id);
+      return el ? parseInt(el.textContent) : 1;
+    }
+
+    function updateTotals() {
+      const items = PRODUCTS.filter(p => cart.includes(p.id));
+      let subtotal = items.reduce((sum, p) => sum + p.price * getItemQty(p.id), 0);
+      const shipping = subtotal >= 50 ? 0 : 5.99;
+      const discountAmt = promoApplied ? Math.round(subtotal * promoDiscount / 100 * 100) / 100 : 0;
+      const total = subtotal + shipping - discountAmt;
+
+      const subEl = document.getElementById('subtotal');
+      const shipEl = document.getElementById('shipping-cost');
+      const discEl = document.getElementById('discount-display');
+      const totEl  = document.getElementById('cart-total');
+      if (subEl) subEl.textContent = '$' + subtotal.toFixed(2);
+      if (shipEl) {
+        shipEl.textContent = shipping === 0 ? 'Free' : '$' + shipping.toFixed(2);
+        shipEl.className = 'font-sans font-semibold ' + (shipping === 0 ? 'text-green-600' : 'text-stone-700 dark:text-stone-300');
+      }
+      if (discEl) discEl.textContent = promoApplied ? '-$' + discountAmt.toFixed(2) : '—';
+      if (totEl) totEl.textContent = '$' + Math.max(0, total).toFixed(2);
+    }
+
+    function applyPromo() {
+      const code = document.getElementById('promo-input').value.trim().toUpperCase();
+      const msgEl = document.getElementById('promo-msg');
+      if (PROMO_CODES[code]) {
+        promoApplied = true;
+        promoDiscount = PROMO_CODES[code];
+        msgEl.textContent = `✓ Code applied! ${promoDiscount}% off your order.`;
+        msgEl.className = 'text-xs font-body mt-1.5 text-green-600';
+        msgEl.classList.remove('hidden');
+        updateTotals();
+        showToast(`Promo code applied — ${promoDiscount}% off! 🎉`);
+      } else {
+        promoApplied = false;
+        promoDiscount = 0;
+        msgEl.textContent = 'Invalid promo code. Try LUXE10, SAVE20, or WELCOME15.';
+        msgEl.className = 'text-xs font-body mt-1.5 text-red-500';
+        msgEl.classList.remove('hidden');
+        updateTotals();
+      }
+    }
+
+    function moveToWishlist(id) {
+      if (!wishlist.includes(id)) {
+        wishlist.push(id);
+        localStorage.setItem('luxe_wish', JSON.stringify(wishlist));
+        updateBadges();
+        showToast('Moved to wishlist ❤️');
+        renderCart();
+      } else {
+        showToast('Already in your wishlist');
+      }
+    }
+
+    function handleCheckout() {
+      showToast('Redirecting to checkout… 🛒');
+    }
+
+    function renderSuggestions() {
+      const cartSet = new Set(cart);
+      const suggestions = PRODUCTS.filter(p => !cartSet.has(p.id)).slice(0, 4);
+      const el = document.getElementById('suggestions-grid');
+      if (el) el.innerHTML = suggestions.map(productCard).join('');
+    }
+  </script>
+</body>
+</html>

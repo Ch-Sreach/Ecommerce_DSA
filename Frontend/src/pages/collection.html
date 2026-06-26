@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collection — LUXE Fashion</title>
+  <meta name="description" content="Browse LUXE's full collection of premium men's and women's fashion, accessories and outerwear. Filter by category, price and size." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://luxefashion.com/collection.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../../dist/output.css" />
+  <link rel="shortcut icon" href="../../images/logo.png" type="image/x-icon">
+
+</head>
+<body class="bg-stone-50 text-stone-900 dark:bg-dark-900 dark:text-stone-100 font-body antialiased">
+
+  <!-- Announcement -->
+  <div class="bg-dark-900 text-luxe-300 text-xs font-sans py-2 overflow-hidden">
+    <div class="marquee-track"><span class="pr-16">✦ Free Shipping on Orders Over $50</span><span class="pr-16">✦ 30-Day Easy Returns</span><span class="pr-16">✦ New Season 2026 Now Live</span><span class="pr-16">✦ Save Up to 70% Off</span><span class="pr-16">✦ Free Shipping on Orders Over $50</span><span class="pr-16">✦ 30-Day Easy Returns</span><span class="pr-16">✦ New Season 2026 Now Live</span><span class="pr-16">✦ Save Up to 70% Off</span></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-[100] bg-stone-50/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-stone-200 dark:border-dark-700 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img
+          src="../../images/logo.png"
+          alt="LUXE Logo"
+          class="h-10 w-10 object-contain"
+        >
+        <span class="font-display text-2xl tracking-[0.15em] font-bold">
+          LUXE
+        </span>
+      </a>
+      <ul class="hidden md:flex items-center gap-1">
+        <li><a href="index.html"      class="nav-link hover-underline">Home</a></li>
+        <li><a href="collection.html" class="nav-link hover-underline" aria-current="page">Collection</a></li>
+        <li><a href="blog.html"       class="nav-link hover-underline">Blog</a></li>
+        <li><a href="about.html"      class="nav-link hover-underline">About</a></li>
+        <li><a href="contact.html"    class="nav-link hover-underline">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSearch()" class="w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="wishlist.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm"><i class="fa-regular fa-heart"></i><span id="wish-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span></a>
+        <a href="cart.html" class="relative w-9 h-9 flex items-center justify-center rounded-full text-stone-500 hover:text-luxe-600 hover:bg-stone-100 dark:hover:bg-dark-700 transition-all text-sm"><i class="fa-solid fa-bag-shopping"></i><span id="cart-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span></a>
+        <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 hover:text-luxe-600 transition-all text-sm"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        <button onclick="toggleMobile()" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5"><span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span><span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span><span class="w-3 h-px bg-stone-700 dark:bg-stone-300 self-end"></span></button>
+      </div>
+    </nav>
+    <div id="search-bar" class="hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-4 py-3"><div class="max-w-2xl mx-auto relative"><i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i><input type="search" placeholder="Search products…" class="w-full pl-11 pr-4 py-2.5 bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-600 rounded-full text-sm focus:outline-none focus:border-luxe-400 font-body"/></div></div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 dark:border-dark-700 bg-stone-50 dark:bg-dark-900 px-6 pb-5"><ul class="flex flex-col gap-1 pt-3"><li><a href="index.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Home</a></li><li><a href="collection.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Collection</a></li><li><a href="blog.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Blog</a></li><li><a href="about.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">About</a></li><li><a href="contact.html" class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Contact</a></li></ul></div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-banner">
+    <div class="page-banner-bg" style="background-image:url('../../images/banner.jpg')"></div>
+    <div class="page-banner-content">
+      <span class="section-label text-luxe-400">Browse</span>
+      <h1 class="font-display text-4xl text-white font-light">All Collection</h1>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="text-xs font-body text-stone-500 mb-8 flex items-center gap-2">
+      <a href="index.html" class="hover:text-luxe-600 transition-colors">Home</a>
+      <span>›</span>
+      <span class="text-stone-700 dark:text-stone-300">Collection</span>
+    </nav>
+
+    <div class="flex gap-8">
+      <!-- Sidebar -->
+      <aside class="hidden lg:block w-56 shrink-0" aria-label="Filters">
+        <div class="sticky top-24 space-y-8">
+          <div>
+            <h2 class="text-xs font-sans tracking-widest uppercase text-stone-700 dark:text-stone-300 mb-4 pb-2 border-b border-stone-200 dark:border-dark-700">Category</h2>
+            <ul class="space-y-2">
+              <li><button onclick="filterCat('all',this)"         class="cat-pill active">All Products</button></li>
+              <li><button onclick="filterCat('men',this)"         class="cat-pill">Men's Wear</button></li>
+              <li><button onclick="filterCat('women',this)"       class="cat-pill">Women's Wear</button></li>
+              <li><button onclick="filterCat('accessories',this)" class="cat-pill">Accessories</button></li>
+              <li><button onclick="filterCat('outerwear',this)"   class="cat-pill">Outerwear</button></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-xs font-sans tracking-widest uppercase text-stone-700 dark:text-stone-300 mb-4 pb-2 border-b border-stone-200 dark:border-dark-700">Price</h2>
+            <ul class="space-y-2">
+              <li><button onclick="filterPrice(0,30,this)"   class="cat-pill">Under $30</button></li>
+              <li><button onclick="filterPrice(30,60,this)"  class="cat-pill">$30 – $60</button></li>
+              <li><button onclick="filterPrice(60,100,this)" class="cat-pill">$60 – $100</button></li>
+              <li><button onclick="filterPrice(100,999,this)"class="cat-pill">Over $100</button></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-xs font-sans tracking-widest uppercase text-stone-700 dark:text-stone-300 mb-4 pb-2 border-b border-stone-200 dark:border-dark-700">Size</h2>
+            <div class="flex flex-wrap gap-2">
+              <button class="size-pill">XS</button>
+              <button class="size-pill">S</button>
+              <button class="size-pill">M</button>
+              <button class="size-pill">L</button>
+              <button class="size-pill">XL</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Grid -->
+      <div class="flex-1">
+        <div class="flex items-center justify-between mb-6">
+          <p class="text-sm font-body text-stone-500"><span id="product-count">16</span> products</p>
+          <select id="sort-select" onchange="sortProducts(this.value)"
+            class="text-sm font-body border border-stone-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-stone-600 dark:text-stone-300 px-3 py-2 focus:outline-none focus:border-luxe-400 transition-colors">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="new">Newest First</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="collection-grid"></div>
+        <!-- Pagination -->
+        <div class="flex justify-center gap-2 mt-12">
+          <button class="w-10 h-10 border border-luxe-500 bg-luxe-500 text-white text-sm font-sans">1</button>
+          <button class="w-10 h-10 border border-stone-200 dark:border-dark-600 text-stone-600 dark:text-stone-400 text-sm font-sans hover:border-luxe-400 transition-colors">2</button>
+          <button class="w-10 h-10 border border-stone-200 dark:border-dark-600 text-stone-600 dark:text-stone-400 text-sm font-sans hover:border-luxe-400 transition-colors">3</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 text-stone-500 mt-16">
+    <div class="max-w-7xl mx-auto px-6 pt-12 pb-6 border-b border-dark-700 grid grid-cols-2 md:grid-cols-4 gap-8 mb-6">
+      <div><div class="font-display text-xl text-white mb-3">LUXE</div><p class="text-xs font-body leading-relaxed">Cambodia's premium online fashion destination.</p></div>
+      <div><h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Navigation</h5><ul class="space-y-2"><li><a href="index.html" class="text-xs font-body hover:text-luxe-400">Home</a></li><li><a href="collection.html" class="text-xs font-body hover:text-luxe-400">Collection</a></li><li><a href="blog.html" class="text-xs font-body hover:text-luxe-400">Blog</a></li><li><a href="about.html" class="text-xs font-body hover:text-luxe-400">About</a></li></ul></div>
+      <div><h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Support</h5><ul class="space-y-2"><li><a href="#" class="text-xs font-body hover:text-luxe-400">FAQs</a></li><li><a href="#" class="text-xs font-body hover:text-luxe-400">Shipping</a></li><li><a href="#" class="text-xs font-body hover:text-luxe-400">Returns</a></li><li><a href="#" class="text-xs font-body hover:text-luxe-400">Size Guide</a></li></ul></div>
+      <div><h5 class="text-white text-xs font-sans tracking-widest uppercase mb-4">Follow</h5><div class="flex gap-2"><a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a><a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a><a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a></div></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pb-6 text-center"><p class="text-xs font-body text-stone-600">© 2026 LUXE Fashion. All rights reserved. Designed with <span class="text-luxe-500">♥</span> in Cambodia.</p></div>
+  </footer>
+
+  <div id="toast" class="toast"><i class="fa-solid fa-circle-check text-luxe-400"></i><span id="toast-msg">Done!</span></div>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="btt" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+  <script src="../js/main.js"></script>
+  <script>
+    let currentList = [...PRODUCTS];
+
+    document.addEventListener('DOMContentLoaded', () => { renderGrid(PRODUCTS); });
+
+    function renderGrid(list) {
+      const el = document.getElementById('collection-grid');
+      document.getElementById('product-count').textContent = list.length;
+      el.innerHTML = list.map(productCard).join('');
+    }
+
+    function filterCat(cat, btn) {
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentList = cat === 'all' ? [...PRODUCTS] : PRODUCTS.filter(p => p.cat === cat);
+      renderGrid(currentList);
+    }
+
+    function filterPrice(min, max, btn) {
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentList = PRODUCTS.filter(p => p.price >= min && p.price <= max);
+      renderGrid(currentList);
+    }
+
+    function sortProducts(val) {
+      let sorted = [...currentList];
+      if (val === 'price-asc')  sorted.sort((a,b) => a.price - b.price);
+      if (val === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+      if (val === 'new')        sorted = sorted.filter(p => p.tags.includes('new')).concat(sorted.filter(p => !p.tags.includes('new')));
+      renderGrid(sorted);
+    }
+  </script>
+</body>
+</html>
