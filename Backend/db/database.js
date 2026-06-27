@@ -1,4 +1,5 @@
 // db/database.js — uses Node.js 22 built-in SQLite (no native build needed)
+// FIX: Added `phone` column to users table for register form
 const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
 
@@ -17,6 +18,7 @@ db.exec(`
     name        TEXT    NOT NULL,
     email       TEXT    NOT NULL UNIQUE,
     password    TEXT    NOT NULL,
+    phone       TEXT,
     role        TEXT    NOT NULL DEFAULT 'customer',
     created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
   );
@@ -94,6 +96,13 @@ db.exec(`
     subscribed_at TEXT    NOT NULL DEFAULT (datetime('now'))
   );
 `);
+
+// ─── Add phone column if upgrading from old DB (safe migration) ──────────────
+try {
+  db.exec("ALTER TABLE users ADD COLUMN phone TEXT");
+} catch (e) {
+  // Column already exists — ignore
+}
 
 // ─── Seed Products ───────────────────────────────────────────────────────────
 

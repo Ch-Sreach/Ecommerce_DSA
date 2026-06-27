@@ -1,15 +1,17 @@
 // server.js — LUXE Fashion Backend
+// FIX: require('./routes/auths') not './routes/auth' (filename was wrong)
 require('dotenv').config();
 
 const express = require('express');
 const cors    = require('cors');
 const morgan  = require('morgan');
+const path    = require('path');
 
 // Initialize DB (creates tables + seeds products on first run)
 require('./db/database');
 
 // ── Routes ───────────────────────────────────────────────────────────────────
-const authRouter     = require('./routes/auth');
+const authRouter     = require('./routes/auths');      // FIX: was './routes/auth'
 const productsRouter = require('./routes/products');
 const cartRouter     = require('./routes/cart');
 const wishlistRouter = require('./routes/wishlist');
@@ -33,6 +35,10 @@ app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
+
+// ── Serve Frontend Static Files ───────────────────────────────────────────────
+// Uncomment below if you want the backend to also serve frontend files:
+// app.use(express.static(path.join(__dirname, '../Frontend/src')));
 
 // ── API Routes ────────────────────────────────────────────────────────────────
 
@@ -76,6 +82,8 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`\n🚀 LUXE Fashion API running at http://localhost:${PORT}`);
   console.log(`   Health check: http://localhost:${PORT}/api/health`);
+  console.log(`   Auth:         http://localhost:${PORT}/api/auth/register`);
+  console.log(`   Auth:         http://localhost:${PORT}/api/auth/login`);
   console.log(`   Products:     http://localhost:${PORT}/api/products`);
   console.log(`   Environment:  ${process.env.NODE_ENV || 'development'}\n`);
 });
