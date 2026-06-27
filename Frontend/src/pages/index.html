@@ -100,7 +100,44 @@
           <i class="fa-solid fa-bag-shopping"></i>
           <span id="cart-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-luxe-500 text-white text-[10px] font-bold rounded-full items-center justify-center">0</span>
         </a>
-        <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 hover:text-luxe-600 transition-all text-sm"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+                <!-- ── Auth button (desktop) ─────────────────────────── -->
+        <div id="nav-auth-desktop" class="relative hidden md:flex items-center">
+          <!-- Logged OUT: Login link -->
+          <a id="nav-login-link" href="login.html"
+            class="hidden items-center gap-1.5 px-3 py-1.5 text-xs font-sans font-semibold tracking-widest uppercase text-stone-600 dark:text-stone-300 hover:text-luxe-600 dark:hover:text-luxe-400 transition-colors border border-stone-300 dark:border-dark-600 hover:border-luxe-400 rounded-sm">
+            <i class="fa-regular fa-user text-sm"></i>
+            <span>Login</span>
+          </a>
+          <!-- Logged IN: Avatar dropdown trigger -->
+          <button id="nav-account-btn"
+            onclick="toggleAccountMenu()"
+            class="hidden items-center gap-2 px-3 py-1.5 text-xs font-sans font-semibold tracking-widest uppercase text-stone-600 dark:text-stone-300 hover:text-luxe-600 dark:hover:text-luxe-400 transition-colors border border-stone-300 dark:border-dark-600 hover:border-luxe-400 rounded-sm">
+            <span class="w-6 h-6 rounded-full bg-luxe-500 text-white flex items-center justify-center text-[10px] font-bold leading-none" id="nav-avatar-letter">U</span>
+            <span id="nav-account-name">Account</span>
+            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+          </button>
+          <!-- Dropdown -->
+          <div id="account-dropdown"
+            class="hidden absolute right-0 top-full mt-2 w-48 bg-white dark:bg-dark-800 border border-stone-200 dark:border-dark-600 shadow-lg z-50 py-1">
+            <div class="px-4 py-3 border-b border-stone-100 dark:border-dark-700">
+              <p class="text-xs text-stone-400 font-sans uppercase tracking-widest">Signed in as</p>
+              <p class="text-sm font-semibold text-stone-800 dark:text-stone-100 truncate mt-0.5" id="dropdown-user-email"></p>
+            </div>
+            <a href="wishlist.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-dark-700 hover:text-luxe-600 transition-colors">
+              <i class="fa-regular fa-heart w-4 text-center"></i> Wishlist
+            </a>
+            <a href="cart.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-dark-700 hover:text-luxe-600 transition-colors">
+              <i class="fa-solid fa-bag-shopping w-4 text-center"></i> My Cart
+            </a>
+            <div class="border-t border-stone-100 dark:border-dark-700 mt-1 pt-1">
+              <button id="nav-logout-btn" onclick="luxeLogout()"
+                class="hidden w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-dark-700 transition-colors text-left">
+                <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+                <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 dark:bg-dark-700 text-stone-500 hover:text-luxe-600 transition-all text-sm"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
         <button onclick="toggleMobile()" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
           <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
           <span class="w-5 h-px bg-stone-700 dark:bg-stone-300"></span>
@@ -121,6 +158,22 @@
         <li><a href="blog.html"       class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Blog</a></li>
         <li><a href="about.html"      class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">About</a></li>
         <li><a href="contact.html"    class="block py-2.5 text-stone-700 dark:text-stone-300 hover:text-luxe-600 font-sans text-sm">Contact</a></li>
+        <li class="border-t border-stone-200 dark:border-dark-700 mt-2 pt-2">
+          <!-- Logged OUT -->
+          <a id="mobile-login-link" href="login.html"
+            class="hidden items-center gap-2 py-2.5 text-luxe-600 font-sans text-sm font-semibold">
+            <i class="fa-regular fa-user"></i> Login / Register
+          </a>
+          <!-- Logged IN -->
+          <div id="mobile-user-row" class="hidden">
+            <p class="text-xs text-stone-400 font-sans uppercase tracking-widest mb-1">Signed in as</p>
+            <p class="text-sm font-semibold text-stone-800 dark:text-stone-100 mb-2" id="mobile-user-name"></p>
+            <button onclick="luxeLogout()"
+              class="flex items-center gap-2 py-2 text-red-500 font-sans text-sm">
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            </button>
+          </div>
+        </li>
       </ul>
     </div>
   </header>
@@ -441,6 +494,63 @@
         document.getElementById('tab-'+t).classList.toggle('hidden', t !== name);
         document.getElementById('tab-'+t).classList.toggle('grid',  t === name);
       });
+    }
+  </script>
+
+  <!-- ═══ LUXE Auth Nav Init ════════════════════════════════════════ -->
+  <script>
+    (function () {
+      var token = localStorage.getItem('luxe_token');
+      var userStr = localStorage.getItem('luxe_user');
+      var user = null;
+      try { user = userStr ? JSON.parse(userStr) : null; } catch(e) {}
+
+      var loginLink    = document.getElementById('nav-login-link');
+      var accountBtn   = document.getElementById('nav-account-btn');
+      var accountName  = document.getElementById('nav-account-name');
+      var avatarLetter = document.getElementById('nav-avatar-letter');
+      var logoutBtn    = document.getElementById('nav-logout-btn');
+      var emailEl      = document.getElementById('dropdown-user-email');
+      var mobileLogin  = document.getElementById('mobile-login-link');
+      var mobileRow    = document.getElementById('mobile-user-row');
+      var mobileName   = document.getElementById('mobile-user-name');
+
+      function show(el) { if(el){ el.classList.remove('hidden'); el.classList.add('flex'); } }
+      function hide(el) { if(el){ el.classList.add('hidden');    el.classList.remove('flex'); } }
+
+      if (token && user) {
+        hide(loginLink);
+        show(accountBtn);
+        if (logoutBtn)    logoutBtn.classList.remove('hidden');
+        if (accountName)  accountName.textContent = user.name ? user.name.split(' ')[0] : 'Account';
+        if (avatarLetter) avatarLetter.textContent = (user.name || 'U')[0].toUpperCase();
+        if (emailEl)      emailEl.textContent = user.email || '';
+        hide(mobileLogin);
+        if (mobileRow)  mobileRow.classList.remove('hidden');
+        if (mobileName) mobileName.textContent = user.name || '';
+      } else {
+        show(loginLink);
+        hide(accountBtn);
+        show(mobileLogin);
+        if (mobileRow) mobileRow.classList.add('hidden');
+      }
+    })();
+
+    function toggleAccountMenu() {
+      var d = document.getElementById('account-dropdown');
+      if (d) d.classList.toggle('hidden');
+    }
+    document.addEventListener('click', function(e) {
+      var btn = document.getElementById('nav-account-btn');
+      var dd  = document.getElementById('account-dropdown');
+      if (dd && btn && !btn.contains(e.target) && !dd.contains(e.target)) {
+        dd.classList.add('hidden');
+      }
+    });
+    function luxeLogout() {
+      localStorage.removeItem('luxe_token');
+      localStorage.removeItem('luxe_user');
+      window.location.href = 'index.html';
     }
   </script>
 </body>
