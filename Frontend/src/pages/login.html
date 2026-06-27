@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — LUXE Fashion</title>
+  <meta name="description" content="Sign in to your LUXE account to access your cart, wishlist and orders." />
+
+  <!-- Tailwind (compiled output) -->
+  <link rel="stylesheet" href="../../dist/output.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="../../images/logo.png" type="image/x-icon" />
+
+  <style>
+    :root {
+      --luxe-500: #c9a96e;
+      --luxe-600: #b8904e;
+      --dark-900: #0e0e0e;
+      --dark-800: #1a1a1a;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+    .font-sans-ui { font-family: 'Syne', sans-serif; }
+
+    .auth-split {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+      .auth-split { grid-template-columns: 1fr; }
+      .auth-image-panel { display: none; }
+    }
+
+    .auth-image-panel {
+      background: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    .auth-image-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.25) 100%);
+    }
+    .auth-image-text {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d6d3d1;
+      background: #fafaf9;
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--luxe-500);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+      background: #fff;
+    }
+    .dark .form-input {
+      background: #1a1a1a;
+      border-color: #333;
+      color: #f5f5f4;
+    }
+    .dark .form-input:focus {
+      background: #222;
+    }
+
+    .btn-luxe {
+      width: 100%;
+      padding: 14px;
+      background: var(--luxe-500);
+      color: white;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-luxe:hover { background: var(--luxe-600); transform: translateY(-1px); }
+    .btn-luxe:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .error-box {
+      display: none;
+      padding: 12px 16px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-left: 4px solid #ef4444;
+      color: #b91c1c;
+      font-size: 0.85rem;
+    }
+    .success-box {
+      display: none;
+      padding: 12px 16px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-left: 4px solid #22c55e;
+      color: #15803d;
+      font-size: 0.85rem;
+    }
+
+    .divider { display: flex; align-items: center; gap: 12px; color: #a8a29e; font-size: 0.8rem; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e7e5e4; }
+
+    .eye-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #a8a29e;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .eye-btn:hover { color: var(--luxe-500); }
+
+    /* Dark mode */
+    .dark body { background: var(--dark-900); color: #f5f5f4; }
+    .dark .auth-form-panel { background: var(--dark-800); }
+    .dark .divider { color: #57534e; }
+    .dark .divider::before, .dark .divider::after { background: #292524; }
+    .dark .error-box { background: #450a0a; border-color: #991b1b; color: #fca5a5; }
+  </style>
+</head>
+<body class="bg-stone-50 dark:bg-dark-900 transition-colors">
+
+  <!-- Theme Toggle -->
+  <button onclick="toggleTheme()" title="Toggle dark mode"
+    style="position:fixed;top:16px;right:16px;z-index:999;width:38px;height:38px;border-radius:50%;border:1px solid #d6d3d1;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+    <i id="theme-icon" class="fa-solid fa-moon text-stone-500" style="font-size:14px;"></i>
+  </button>
+
+  <div class="auth-split">
+
+    <!-- LEFT: Image panel -->
+    <div class="auth-image-panel">
+      <div class="auth-image-text">
+        <p class="font-sans-ui text-xs tracking-widest uppercase text-white/70 mb-2">LUXE Fashion</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;line-height:1.15;color:#fff;font-weight:300;">
+          Style is a way<br/>to say who you are<br/><em>without speaking.</em>
+        </h2>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form panel -->
+    <div class="auth-form-panel bg-white dark:bg-dark-800 flex flex-col justify-center px-8 py-12" style="min-height:100vh;">
+      <div style="max-width:420px;width:100%;margin:0 auto;">
+
+        <!-- Logo -->
+        <a href="index.html" class="inline-flex items-center gap-3 mb-10">
+          <img src="../../images/logo.png" alt="LUXE" style="width:36px;height:36px;object-fit:contain;" />
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;letter-spacing:0.1em;" class="text-stone-900 dark:text-white">LUXE</span>
+        </a>
+
+        <h1 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;margin-bottom:4px;" class="text-stone-900 dark:text-white">Welcome back</h1>
+        <p class="text-stone-500 dark:text-stone-400 text-sm mb-8">Sign in to continue to your account</p>
+
+        <!-- Error / Success -->
+        <div id="error-box" class="error-box mb-5">
+          <i class="fa-solid fa-circle-exclamation mr-2"></i>
+          <span id="error-text"></span>
+        </div>
+        <div id="success-box" class="success-box mb-5">
+          <i class="fa-solid fa-circle-check mr-2"></i>
+          <span id="success-text"></span>
+        </div>
+
+        <!-- Form -->
+        <form id="login-form" novalidate>
+
+          <!-- Email -->
+          <div class="mb-5">
+            <label class="block text-xs font-sans-ui font-semibold tracking-widest uppercase text-stone-600 dark:text-stone-400 mb-2">Email Address</label>
+            <input id="email" type="email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+
+          <!-- Password -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label class="block text-xs font-sans-ui font-semibold tracking-widest uppercase text-stone-600 dark:text-stone-400">Password</label>
+              <a href="#" class="text-xs text-luxe-500 hover:text-luxe-600" style="color:var(--luxe-500);" onclick="showForgotMsg(event)">Forgot password?</a>
+            </div>
+            <div style="position:relative;">
+              <input id="password" type="password" class="form-input" placeholder="••••••••" autocomplete="current-password" required style="padding-right:44px;" />
+              <button type="button" class="eye-btn" onclick="togglePass('password', this)">
+                <i class="fa-regular fa-eye" style="font-size:14px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="submit-btn" class="btn-luxe">
+            <span id="btn-text">Sign In</span>
+            <i id="btn-spinner" class="fa-solid fa-circle-notch fa-spin hidden ml-2"></i>
+          </button>
+        </form>
+
+        <div class="divider my-7">or</div>
+
+        <!-- Register link -->
+        <p class="text-center text-sm text-stone-500 dark:text-stone-400">
+          Don't have an account?
+          <a href="register.html" style="color:var(--luxe-500);font-weight:500;" class="hover:underline">Create one →</a>
+        </p>
+
+        <!-- Back to shop -->
+        <p class="text-center mt-4">
+          <a href="index.html" class="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
+            <i class="fa-solid fa-arrow-left mr-1"></i> Back to shop
+          </a>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { Auth, isLoggedIn, updateNavAuth } from '../js/api.js';
+
+    // Redirect if already logged in
+    if (isLoggedIn()) {
+      const redirect = new URLSearchParams(location.search).get('redirect') || 'index.html';
+      window.location.href = redirect;
+    }
+
+    const form       = document.getElementById('login-form');
+    const emailEl   = document.getElementById('email');
+    const passwordEl = document.getElementById('password');
+    const submitBtn  = document.getElementById('submit-btn');
+    const btnText    = document.getElementById('btn-text');
+    const spinner    = document.getElementById('btn-spinner');
+    const errorBox   = document.getElementById('error-box');
+    const errorText  = document.getElementById('error-text');
+    const successBox = document.getElementById('success-box');
+    const successText = document.getElementById('success-text');
+
+    function showError(msg) {
+      errorText.textContent = msg;
+      errorBox.style.display = 'block';
+      successBox.style.display = 'none';
+    }
+    function showSuccess(msg) {
+      successText.textContent = msg;
+      successBox.style.display = 'block';
+      errorBox.style.display = 'none';
+    }
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      btnText.textContent = on ? 'Signing in…' : 'Sign In';
+      spinner.classList.toggle('hidden', !on);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.style.display = 'none';
+
+      const email    = emailEl.value.trim();
+      const password = passwordEl.value;
+
+      if (!email)    return showError('Please enter your email address.');
+      if (!password) return showError('Please enter your password.');
+
+      setLoading(true);
+      try {
+        const data = await Auth.login(email, password);
+        showSuccess(`Welcome back, ${data.user.name.split(' ')[0]}! Redirecting…`);
+        setTimeout(() => {
+          const redirect = new URLSearchParams(location.search).get('redirect') || 'index.html';
+          window.location.href = redirect;
+        }, 900);
+      } catch (err) {
+        showError(err.message || 'Login failed. Please try again.');
+        setLoading(false);
+      }
+    });
+
+    // Clear error on input
+    [emailEl, passwordEl].forEach(el => el.addEventListener('input', () => {
+      errorBox.style.display = 'none';
+    }));
+
+    window.showForgotMsg = (e) => {
+      e.preventDefault();
+      showError('Password reset is not yet implemented. Please contact support.');
+    };
+  </script>
+
+  <script>
+    // Dark mode (no module needed)
+    const saved = localStorage.getItem('luxe_theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.getElementById('theme-icon').className = 'fa-solid fa-sun text-stone-500';
+    }
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('luxe_theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-icon').className = isDark ? 'fa-solid fa-sun text-stone-500' : 'fa-solid fa-moon text-stone-500';
+    }
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      btn.querySelector('i').className = isText ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
+    }
+  </script>
+</body>
+</html>
